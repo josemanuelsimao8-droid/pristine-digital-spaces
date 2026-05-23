@@ -9,38 +9,262 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ServicosRouteImport } from './routes/servicos'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as EquipeRouteImport } from './routes/equipe'
+import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as BlogRouteImport } from './routes/blog'
+import { Route as AgendamentoRouteImport } from './routes/agendamento'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicosResidencialRouteImport } from './routes/servicos.residencial'
+import { Route as ServicosPosObraRouteImport } from './routes/servicos.pos-obra'
+import { Route as ServicosEscritoriosRouteImport } from './routes/servicos.escritorios'
+import { Route as ServicosComercialRouteImport } from './routes/servicos.comercial'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicosRoute = ServicosRouteImport.update({
+  id: '/servicos',
+  path: '/servicos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EquipeRoute = EquipeRouteImport.update({
+  id: '/equipe',
+  path: '/equipe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContatoRoute = ContatoRouteImport.update({
+  id: '/contato',
+  path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgendamentoRoute = AgendamentoRouteImport.update({
+  id: '/agendamento',
+  path: '/agendamento',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicosResidencialRoute = ServicosResidencialRouteImport.update({
+  id: '/residencial',
+  path: '/residencial',
+  getParentRoute: () => ServicosRoute,
+} as any)
+const ServicosPosObraRoute = ServicosPosObraRouteImport.update({
+  id: '/pos-obra',
+  path: '/pos-obra',
+  getParentRoute: () => ServicosRoute,
+} as any)
+const ServicosEscritoriosRoute = ServicosEscritoriosRouteImport.update({
+  id: '/escritorios',
+  path: '/escritorios',
+  getParentRoute: () => ServicosRoute,
+} as any)
+const ServicosComercialRoute = ServicosComercialRouteImport.update({
+  id: '/comercial',
+  path: '/comercial',
+  getParentRoute: () => ServicosRoute,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/agendamento': typeof AgendamentoRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/contato': typeof ContatoRoute
+  '/equipe': typeof EquipeRoute
+  '/faq': typeof FaqRoute
+  '/servicos': typeof ServicosRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sobre': typeof SobreRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/servicos/comercial': typeof ServicosComercialRoute
+  '/servicos/escritorios': typeof ServicosEscritoriosRoute
+  '/servicos/pos-obra': typeof ServicosPosObraRoute
+  '/servicos/residencial': typeof ServicosResidencialRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/agendamento': typeof AgendamentoRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/contato': typeof ContatoRoute
+  '/equipe': typeof EquipeRoute
+  '/faq': typeof FaqRoute
+  '/servicos': typeof ServicosRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sobre': typeof SobreRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/servicos/comercial': typeof ServicosComercialRoute
+  '/servicos/escritorios': typeof ServicosEscritoriosRoute
+  '/servicos/pos-obra': typeof ServicosPosObraRoute
+  '/servicos/residencial': typeof ServicosResidencialRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/agendamento': typeof AgendamentoRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/contato': typeof ContatoRoute
+  '/equipe': typeof EquipeRoute
+  '/faq': typeof FaqRoute
+  '/servicos': typeof ServicosRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/sobre': typeof SobreRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/servicos/comercial': typeof ServicosComercialRoute
+  '/servicos/escritorios': typeof ServicosEscritoriosRoute
+  '/servicos/pos-obra': typeof ServicosPosObraRoute
+  '/servicos/residencial': typeof ServicosResidencialRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/agendamento'
+    | '/blog'
+    | '/contato'
+    | '/equipe'
+    | '/faq'
+    | '/servicos'
+    | '/sitemap.xml'
+    | '/sobre'
+    | '/blog/$slug'
+    | '/servicos/comercial'
+    | '/servicos/escritorios'
+    | '/servicos/pos-obra'
+    | '/servicos/residencial'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/agendamento'
+    | '/blog'
+    | '/contato'
+    | '/equipe'
+    | '/faq'
+    | '/servicos'
+    | '/sitemap.xml'
+    | '/sobre'
+    | '/blog/$slug'
+    | '/servicos/comercial'
+    | '/servicos/escritorios'
+    | '/servicos/pos-obra'
+    | '/servicos/residencial'
+  id:
+    | '__root__'
+    | '/'
+    | '/agendamento'
+    | '/blog'
+    | '/contato'
+    | '/equipe'
+    | '/faq'
+    | '/servicos'
+    | '/sitemap.xml'
+    | '/sobre'
+    | '/blog/$slug'
+    | '/servicos/comercial'
+    | '/servicos/escritorios'
+    | '/servicos/pos-obra'
+    | '/servicos/residencial'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AgendamentoRoute: typeof AgendamentoRoute
+  BlogRoute: typeof BlogRouteWithChildren
+  ContatoRoute: typeof ContatoRoute
+  EquipeRoute: typeof EquipeRoute
+  FaqRoute: typeof FaqRoute
+  ServicosRoute: typeof ServicosRouteWithChildren
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SobreRoute: typeof SobreRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicos': {
+      id: '/servicos'
+      path: '/servicos'
+      fullPath: '/servicos'
+      preLoaderRoute: typeof ServicosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/equipe': {
+      id: '/equipe'
+      path: '/equipe'
+      fullPath: '/equipe'
+      preLoaderRoute: typeof EquipeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contato': {
+      id: '/contato'
+      path: '/contato'
+      fullPath: '/contato'
+      preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agendamento': {
+      id: '/agendamento'
+      path: '/agendamento'
+      fullPath: '/agendamento'
+      preLoaderRoute: typeof AgendamentoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +272,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/servicos/residencial': {
+      id: '/servicos/residencial'
+      path: '/residencial'
+      fullPath: '/servicos/residencial'
+      preLoaderRoute: typeof ServicosResidencialRouteImport
+      parentRoute: typeof ServicosRoute
+    }
+    '/servicos/pos-obra': {
+      id: '/servicos/pos-obra'
+      path: '/pos-obra'
+      fullPath: '/servicos/pos-obra'
+      preLoaderRoute: typeof ServicosPosObraRouteImport
+      parentRoute: typeof ServicosRoute
+    }
+    '/servicos/escritorios': {
+      id: '/servicos/escritorios'
+      path: '/escritorios'
+      fullPath: '/servicos/escritorios'
+      preLoaderRoute: typeof ServicosEscritoriosRouteImport
+      parentRoute: typeof ServicosRoute
+    }
+    '/servicos/comercial': {
+      id: '/servicos/comercial'
+      path: '/comercial'
+      fullPath: '/servicos/comercial'
+      preLoaderRoute: typeof ServicosComercialRouteImport
+      parentRoute: typeof ServicosRoute
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof BlogRoute
+    }
   }
 }
 
+interface BlogRouteChildren {
+  BlogSlugRoute: typeof BlogSlugRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogSlugRoute: BlogSlugRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
+
+interface ServicosRouteChildren {
+  ServicosComercialRoute: typeof ServicosComercialRoute
+  ServicosEscritoriosRoute: typeof ServicosEscritoriosRoute
+  ServicosPosObraRoute: typeof ServicosPosObraRoute
+  ServicosResidencialRoute: typeof ServicosResidencialRoute
+}
+
+const ServicosRouteChildren: ServicosRouteChildren = {
+  ServicosComercialRoute: ServicosComercialRoute,
+  ServicosEscritoriosRoute: ServicosEscritoriosRoute,
+  ServicosPosObraRoute: ServicosPosObraRoute,
+  ServicosResidencialRoute: ServicosResidencialRoute,
+}
+
+const ServicosRouteWithChildren = ServicosRoute._addFileChildren(
+  ServicosRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AgendamentoRoute: AgendamentoRoute,
+  BlogRoute: BlogRouteWithChildren,
+  ContatoRoute: ContatoRoute,
+  EquipeRoute: EquipeRoute,
+  FaqRoute: FaqRoute,
+  ServicosRoute: ServicosRouteWithChildren,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SobreRoute: SobreRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
